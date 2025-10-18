@@ -28,8 +28,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       - name: Setup Node
         uses: actions/setup-node@v4
+        
         with:
           node-version: 22
           cache: 'npm'
@@ -39,15 +41,6 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: Add SPA fallback (404.html)
-        run: cp dist/index.html dist/404.html
-        
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
