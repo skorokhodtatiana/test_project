@@ -10,5 +10,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/test_task/',
+  base: '/test_project/',
 })
