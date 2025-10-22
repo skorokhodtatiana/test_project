@@ -8,7 +8,7 @@ const GetUsers = () => {
 	useEffect(() => {
 		const getUsersData = async () => {
 			try {
-				const response = await fetch('https://api.artic.edu/api/v1/artworks?page=1&limit=20');
+				const response = await fetch('https://api.artic.edu/api/v1/artworks?page=2&limit=100');
 				if(!response.ok) {
 					throw new Error('Ошибка запроса')
 				}
