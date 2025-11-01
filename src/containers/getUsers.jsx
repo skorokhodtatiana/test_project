@@ -1,36 +1,20 @@
-import { useEffect, useState } from "react";
-import Showcase from '../components/showcase/Showcase';
+// import Showcase from '../components/showcase/Showcase';
+// import { useDispatch } from 'react-redux';
+// import { fetchProducts } from '../store/itemsSlice';
+// import { useEffect } from "react";
 
-const GetUsers = () => {
-	const [res, setRes] = useState(null);
-	const [error, setError] = useState(null);
+// const GetUsers = () => {
+// 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		const getUsersData = async () => {
-			try {
-				const response = await fetch('https://api.artic.edu/api/v1/artworks?page=2&limit=100');
-				if(!response.ok) {
-					throw new Error('Ошибка запроса')
-				}
-				const data = await response.json();
-				setRes(data);
-			} catch {
-				setError(error);
-			}
-		}
+// 	useEffect(() => {
+// 		dispatch(fetchProducts());
+// 		console.log('dispatch(fetchProducts()) ' + dispatch(fetchProducts()))
+// 	}, [dispatch])
 
-		getUsersData();
-		}, []);
+// 	return (
+// 		<>
+// 		</>
+// 	)
+// }
 
-		if (error) {
-			return <p>Произошла ошибка: {error.message}</p>;
-		}
-
-	return (
-		<>
-			<Showcase data = {res}></Showcase>
-		</>
-	)
-}
-
-export default GetUsers;
+// export default GetUsers;
