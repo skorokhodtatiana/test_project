@@ -1,11 +1,12 @@
-import './App.css'
-import Cart from './components/cart/Cart'
-import Showcase from './components/showcase/Showcase'
+import './App.css';
+import Cart from './components/cart/Cart';
+import Header from "./components/header/Header";
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from './store/itemsSlice';
 import { useEffect } from "react";
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/home/Home';
+import Home from './pages/home/Home';
+import Catalog from './pages/catalog/Catalog';
 
 function App() {
 	const dispatch = useDispatch();
@@ -16,9 +17,10 @@ function App() {
 
 	return (
 		<HashRouter>
+			<Header></Header>
 			<Routes>
 				<Route path="/" element={<Home/>}></Route>
-				<Route path="/catalog" element={<Showcase/>}></Route>
+				<Route path="/catalog" element={<Catalog/>}></Route>
 				<Route path="/cart" element={<Cart/>}></Route>
 			</Routes>
 		</HashRouter>
