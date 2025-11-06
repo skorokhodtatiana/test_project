@@ -7,11 +7,11 @@ const Cart = () => {
 
 	return (
 		<>
-			<h1 className={styles.page}>
+			<h1 className={ styles.page }>
 				Корзина
 			</h1>
 			{items.length && items.map(el => (
-				<Card key={el.item.id} title={el.item.title} description={el.item.description} id={el.item.image_id} author={el.item.artist_title}></Card>
+				<Card key={ el.item.id } title={ el.item.title } description={ el.item.description } id={ el.item.image_id } author={ el.item.artist_title } classIcons={ styles.icons }></Card>
 			))}
 		</>
 	)

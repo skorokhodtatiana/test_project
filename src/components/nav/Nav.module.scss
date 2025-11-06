@@ -2,22 +2,21 @@
 	position: relative;
 }
 
-.items{
+.items {
 	display: none;
 	width: 200px;
 	position: absolute;
 	flex-direction: column;
 	right: -20px;
-	//background-color: white;
+	background-color: #808080;
 	border-radius: 6px;
 
 	@media screen and (min-width: 1024px) {
 		width: auto;
-		//display: block;
 		display: flex;
 		flex-direction: row;
 		position: static;
-		//background-color: unset;
+		background-color: unset;
 		transform: translate(-0%, 0%)
 	}
 
@@ -50,17 +49,7 @@
 	&:last-child {
 		margin-bottom: 25px;
 	}
-
-	// &:hover,
-	// &:active,
-	// &:focus {
-	// 	color: $blue-color;
-	// }
 }
-
-// .active {
-// 	color: $blue-color;
-// }
 
 .burger {
 	$self: &;
@@ -86,9 +75,7 @@
 	display: block;
 	width: 26px;
 	height: 3px;
-	//background-color: white;
 	background-color: #000000;
-	// color: #000000;
 	margin: 5px 0;
 	border-radius: 5px;
 

@@ -1,6 +1,10 @@
 .page {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: 1fr;
 	gap: 20px;
 	align-items: center;
+
+	@media screen and (min-width: 1024px) {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
