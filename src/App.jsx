@@ -1,19 +1,11 @@
 import './App.css';
 import Cart from './components/cart/Cart';
 import Header from "./components/header/Header";
-import { useDispatch } from 'react-redux';
-import { fetchProducts } from './store/itemsSlice';
-import { useEffect } from "react";
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Catalog from './pages/catalog/Catalog';
 
 function App() {
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(fetchProducts());
-	}, [dispatch])
 
 	return (
 		<HashRouter>
