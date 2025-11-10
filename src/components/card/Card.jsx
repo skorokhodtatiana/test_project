@@ -2,7 +2,7 @@ import styles from'./Card.module.scss';
 import cart from '../../assets/images/cart.svg';
 import Button from '../button/Button';
 
-const Card = ({ id, title, author, handleClick, classIcons }) => {
+const Card = ({ id, title, author, handleClick, classIcons, isInCart }) => {
 
 	return (
 		<>
@@ -13,9 +13,13 @@ const Card = ({ id, title, author, handleClick, classIcons }) => {
 					<div className={ styles.second_title}>{ author? author : 'Author is unknown' }</div>
 				</div>
 				<div className={ styles.icons + ' ' + classIcons }>
-					<Button className= {styles.button } handleClick={ handleClick }>
-						<img src={ cart } alt=""></img>
-					</Button>
+					{ isInCart ?
+						<div>Товар в корзине</div>
+					:
+						<Button className= {styles.button } handleClick={ handleClick }>
+							<img src={ cart } alt=""></img>
+						</Button>
+					}
 				</div>
 			</div>
 		</>
