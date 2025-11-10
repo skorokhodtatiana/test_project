@@ -2,20 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchProducts = createAsyncThunk(
 	'products/fetchProducts',
-	//async (_,{ rejectWithValue, thunkAPI }) => {
-	async (url,{ rejectWithValue, signal }) => {
-		const controller = new AbortController();
-		signal.addEventListener('abort', () => {
-			console.log("abort");
-			controller.abort();
-		})
-
-		// try {
-		// 	const response = await fetch('https://api.artic.edu/api/v1/artworks?page=2&limit=100', {
-		// 		signal: thunkAPI.signal
-		// 		}
-		// 	);
-
+	async (url,{ signal, rejectWithValue }) => {
 		try {
 			const response = await fetch(url, { signal });
 			if (!response.ok) {
@@ -46,14 +33,16 @@ const productsSlice = createSlice({
 		builder
 		.addCase(fetchProducts.pending, (state) => {
 			state.status = 'loading';
+			state.error = null;
 		})
 		.addCase(fetchProducts.fulfilled, (state, action) => {
-			state.status = 'succeeded';
 			state.items = action.payload.data;
+			state.status = 'succeeded';
+			state.error = null;
 		})
 		.addCase(fetchProducts.rejected, (state, action) => {
 			state.status = 'failed';
-			state.error = action.error.message;
+			state.error = action.payload;
 		});
 	},
 });
