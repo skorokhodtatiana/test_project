@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
 			return data;
 		} catch (error) {
 			if (error.name === 'AbortError') {
-				console.log("error.name " + error.name);
+				console.log('Запрос был отменен');
 				return 'Aborted';
 			}
 			return rejectWithValue(error.message || 'Неизвестная ошибка');
