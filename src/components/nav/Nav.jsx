@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Nav.module.scss';
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-//import search from '../../assets/images/search.svg';
+import search from '../../assets/images/search.svg';
 import { addChoseItem } from '../../store/choseAuthorSlice';
 
 const Nav = () => {
@@ -16,13 +16,13 @@ const Nav = () => {
 		setIsMobile(!isMobile);
 	}
 
-	const sentAuthor = () => {
-		const newData = data.filter(el => {
-			return el?.artist_title == valueAuthor
-		});
+	// const sentAuthor = () => {
+	// 	const newData = data.filter(el => {
+	// 		return el?.artist_title == valueAuthor
+	// 	});
 
-		dispatch(addChoseItem(newData));
-	}
+	// 	dispatch(addChoseItem(newData));
+	// }
 	const classNameLinkMenu = `${ styles.items } ${isMobile ? styles.flex : ''}`;
 
 	async function formAction(formData) {
@@ -32,23 +32,35 @@ const Nav = () => {
 		//setItems((items) => [...items, { text: newItem }])
 	}
 
+	const handleChange = (e) => {
+		setValueAuthor(e.target.value);
+		const newData = data?.filter(el => {
+			// console.log(el.artist_title)
+			console.log(e.target.value)
+			return el.artist_title && el.artist_title === e.target.value
+		});
+
+		dispatch(addChoseItem(newData));
+	}
+
 	return (
 		<div className={styles.nav} >
-			<div className={isMobile ? styles.open : styles.burger} onClick={handleClick}>
-				<span className={styles.line}></span>
-				<span className={styles.line}></span>
-				<span className={styles.line}></span>
+			<div className={ isMobile ? styles.open : styles.burger } onClick={ handleClick }>
+				<span className={ styles.line }></span>
+				<span className={ styles.line }></span>
+				<span className={ styles.line }></span>
 			</div>
-			<nav className={classNameLinkMenu}>
-				<NavLink className={styles.link} to="/">About us</NavLink>
-				<NavLink className={styles.link} to="/catalog">Catalog</NavLink>
-				<NavLink className={styles.link} to="/cart">Cart</NavLink>
-				<form action={formAction}>
-					<input type="text" name="idPicture" placeholder="Напишите автора" onChange={(e) => setValueAuthor(e.target.value)}></input>
-					<button type="submit" className={styles.link} onClick={sentAuthor}>
-					{/* <img className={styles.search} src={search} alt={"search"}></img> */}
-					Search
-					</button>
+			<nav className={ classNameLinkMenu }>
+				<NavLink className={ styles.link } to="/">About us</NavLink>
+				<NavLink className={ styles.link } to="/catalog">Catalog</NavLink>
+				<NavLink className={ styles.link } to="/cart">Cart</NavLink>
+				<form action={ formAction }>
+					<img className={ styles.search } src={search} alt=""></img>
+					{/* <input type="text" name="idPicture" placeholder="Автор" onChange={(e) => setValueAuthor(e.target.value)}></input> */}
+					<input type="text" name="idPicture" value={ valueAuthor } placeholder="Автор" onChange={ (e) => handleChange(e) }></input>
+					{/* <button type="submit" className={styles.link} onClick={sentAuthor}> */}
+					{/* Search */}
+					{/* </button> */}
 				</form>
 			</nav>
 		</div>
