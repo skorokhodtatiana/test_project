@@ -7,7 +7,7 @@ import { addChoseItem } from '../../store/choseAuthorSlice';
 
 const Nav = () => {
 	const [isMobile, setIsMobile] = useState(false);
-	const [valueAuthor, setValueAuthor] = useState(null);
+	const [valueAuthor, setValueAuthor] = useState('');
 
 	const dispatch = useDispatch();
 	const data = useSelector(state => state.product.items)
@@ -43,6 +43,11 @@ const Nav = () => {
 		dispatch(addChoseItem(newData));
 	}
 
+	const clearInput = () => {
+		setValueAuthor('');
+		dispatch(addChoseItem(''));
+	}
+
 	return (
 		<div className={styles.nav} >
 			<div className={ isMobile ? styles.open : styles.burger } onClick={ handleClick }>
@@ -54,13 +59,10 @@ const Nav = () => {
 				<NavLink className={ styles.link } to="/">About us</NavLink>
 				<NavLink className={ styles.link } to="/catalog">Catalog</NavLink>
 				<NavLink className={ styles.link } to="/cart">Cart</NavLink>
-				<form action={ formAction }>
+				<form className={ styles.form } action={ formAction }>
 					<img className={ styles.search } src={search} alt=""></img>
-					{/* <input type="text" name="idPicture" placeholder="Автор" onChange={(e) => setValueAuthor(e.target.value)}></input> */}
-					<input type="text" name="idPicture" value={ valueAuthor } placeholder="Автор" onChange={ (e) => handleChange(e) }></input>
-					{/* <button type="submit" className={styles.link} onClick={sentAuthor}> */}
-					{/* Search */}
-					{/* </button> */}
+					<input className={ styles.input } type="text" name="idPicture" value={ valueAuthor } placeholder="Автор" onChange={ (e) => handleChange(e) }></input>
+					<button onClick={clearInput} className={ styles.close }></button>
 				</form>
 			</nav>
 		</div>
