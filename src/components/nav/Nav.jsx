@@ -4,10 +4,13 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import search from '../../assets/images/search.svg';
 import { addChoseItem } from '../../store/choseAuthorSlice';
+import Button from '../button/Button';
+import Modal from '../modal/Modal';
 
 const Nav = () => {
 	const [isMobile, setIsMobile] = useState(false);
 	const [valueAuthor, setValueAuthor] = useState('');
+	const [showModal, setShowModal] = useState(false);
 
 	const dispatch = useDispatch();
 	const data = useSelector(state => state.product.items)
@@ -40,7 +43,11 @@ const Nav = () => {
 			return el.artist_title && el.artist_title === e.target.value
 		});
 
-		dispatch(addChoseItem(newData));
+		if (newData.length) {
+			dispatch(addChoseItem(newData));
+		} else {
+			setShowModal(true);
+		}
 	}
 
 	const clearInput = () => {
@@ -62,9 +69,14 @@ const Nav = () => {
 				<form className={ styles.form } action={ formAction }>
 					<img className={ styles.search } src={search} alt=""></img>
 					<input className={ styles.input } type="text" name="idPicture" value={ valueAuthor } placeholder="Автор" onChange={ (e) => handleChange(e) }></input>
-					<button onClick={clearInput} className={ styles.close }></button>
+					<Button handleClick={clearInput} className={ styles.close }></Button>
 				</form>
 			</nav>
+			{showModal &&
+				<Modal showModal={showModal} handleClick={() => setShowModal(false)}>
+					<h4>Картины этого автора не найдены</h4>
+				</Modal>
+			}
 		</div>
 	)
 }
