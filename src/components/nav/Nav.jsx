@@ -3,6 +3,8 @@ import styles from './Nav.module.scss';
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import search from '../../assets/images/search.svg';
+import sadFace from '../../assets/images/sad-face.svg';
+import close from '../../assets/images/close.svg';
 import { addChoseItem } from '../../store/choseAuthorSlice';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
@@ -69,12 +71,15 @@ const Nav = () => {
 				<form className={ styles.form } action={ formAction }>
 					<img className={ styles.search } src={search} alt=""></img>
 					<input className={ styles.input } type="text" name="idPicture" value={ valueAuthor } placeholder="Автор" onChange={ (e) => handleChange(e) }></input>
-					<Button handleClick={clearInput} className={ styles.close }></Button>
+					<Button handleClick={clearInput} className={ styles.close }>
+						<img className={ styles.closeImg } src={close} alt=""></img>
+					</Button>
 				</form>
 			</nav>
 			{showModal &&
 				<Modal showModal={showModal} handleClick={() => setShowModal(false)}>
-					<h4>Картины этого автора не найдены</h4>
+					<h4 className={ styles.text }>Картины этого автора не найдены</h4>
+					<img className={ styles.modalImg } src={sadFace} alt=""></img>
 				</Modal>
 			}
 		</div>

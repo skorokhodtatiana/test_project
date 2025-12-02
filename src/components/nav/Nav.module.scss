@@ -117,29 +117,24 @@
 
 .close {
 	position: absolute;
-	width: 20px;
-	height: 20px;
-	right: 18px;
-	top: 4px;
-	padding-right: 16px;
+	right: 0;
+	padding-right: 0;
+	padding-top: 0;
 	border: none;
 	background-color: inherit;
 	cursor: pointer;
 }
 
-.close::before,
-.close::after {
-	content: '';
-	position: absolute;
-	width: 20px;
-	height: 1px;
-	background-color: #000000;
+.closeImg {
+	width: 27px;
 }
 
-.close::before {
-	transform: rotate(45deg);
+.text {
+	text-align: center;
 }
 
-.close::after {
-	transform: rotate(-45deg);
+.modalImg {
+	display: block;
+	margin: auto;
+	width: 50px;
 }

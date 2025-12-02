@@ -1,4 +1,7 @@
 import ReactDOM from 'react-dom';
+import Button from '../button/Button';
+import close from '../../assets/images/close.svg';
+
 import styles from './Modal.module.scss';
 
 const Modal = ({
@@ -15,8 +18,10 @@ const Modal = ({
 				ReactDOM.createPortal(
 					<div className={ styles.container }>
 						<div className={ styles.body }>
-							<div onClick={ handleClick } className={ styles.close }></div>
-								{ children }
+							<Button handleClick={handleClick} className={ styles.close }>
+								<img className={ styles.closeImg } src={close} alt=""></img>
+							</Button>
+							{ children }
 						</div>
 					</div>,
 					document.body
