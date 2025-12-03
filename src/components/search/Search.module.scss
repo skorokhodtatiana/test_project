@@ -1,0 +1,31 @@
+.form {
+	position: relative;
+}
+
+.input {
+	padding: 4px 30px;
+	text-align: center;
+	border-radius: 4px;
+	border: 1px solid #808080;
+}
+
+.search {
+	position: absolute;
+	top: 2px;
+	left: 4px;
+	pointer-events: none;
+}
+
+.close {
+	position: absolute;
+	right: 0;
+	padding-right: 0;
+	padding-top: 0;
+	border: none;
+	background-color: inherit;
+	cursor: pointer;
+}
+
+.closeImg {
+	width: 27px;
+}
