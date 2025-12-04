@@ -15,12 +15,16 @@
 	justify-content: center;
 	margin-inline: auto;
 	margin-top: 7%;
-	width: 500px;
+	width: 90%;
 	height: 200px;
 	background-color: white;
 	border: 2px solid gray;
 	border-radius: 4px;
 	z-index: 101;
+
+	@media screen and (min-width: 1024px) {
+		width: 500px;
+	}
 }
 
 .close {

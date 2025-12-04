@@ -9,14 +9,13 @@ const Modal = ({
 	className='',
 	children,
 	handleClick,
-	...props
 }) => {
 
 	return (
 		<>
 			{ showModal &&
 				ReactDOM.createPortal(
-					<div className={ styles.container }>
+					<div className={ styles.container + className }>
 						<div className={ styles.body }>
 							<Button handleClick={handleClick} className={ styles.close }>
 								<img className={ styles.closeImg } src={close} alt=""></img>
