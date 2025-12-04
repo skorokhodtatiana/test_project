@@ -1,32 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './Nav.module.scss';
 import { NavLink } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import sadFace from '../../assets/images/sad-face.svg';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import Search from '../search/Search';
 import { useLocation } from "react-router-dom";
 
+import { addChoseItem } from '../../store/choseAuthorSlice';
+
 const Nav = () => {
 	const [isMobile, setIsMobile] = useState(false);
 	const [showModal, setShowModal] = useState(false);
+	const [valueAuthor, setValueAuthor] = useState('');
+
+	const classNameLinkMenu = `${ styles.items } ${isMobile ? styles.flex : ''}`;
 
 	const handleClick = () => {
 		setIsMobile(!isMobile);
 	}
 
-	const classNameLinkMenu = `${ styles.items } ${isMobile ? styles.flex : ''}`;
-	const data = useSelector(state => state.author.item);
-
 	function ConditionalSearchBar() {
-	const location = useLocation();
+		const location = useLocation();
 
-	if (location.pathname === '/') {
-		return <Search></Search>
+		if (location.pathname === '/') {
+			return <Search handleChange={handleChange} valueAuthor={valueAuthor} clearInput={clearInput}></Search>
+		}
+		return null;
 	}
-	return null;
-}
+
+	const dispatch = useDispatch();
+	const data = useSelector(state => state.product.items)
+
+	const handleChange = (e) => {
+		setValueAuthor(e.target.value);
+		const newData = data?.filter(el => {
+			return el.artist_title && el.artist_title === e.target.value
+		});
+
+		if (newData.length) {
+			dispatch(addChoseItem(newData));
+		} else {
+			setShowModal(true);
+		}
+	}
+
+	const clearInput = () => {
+		setValueAuthor('');
+		dispatch(addChoseItem(''));
+	}
 
 	return (
 		<div className={styles.nav} >

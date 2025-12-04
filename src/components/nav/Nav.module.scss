@@ -4,12 +4,11 @@
 
 .items {
 	display: none;
-	width: 200px;
 	position: absolute;
 	flex-direction: column;
 	right: -20px;
-	background-color: #808080;
 	border-radius: 6px;
+	background-color: rgb(248, 244, 244);
 
 	@media screen and (min-width: 1024px) {
 		width: auto;
@@ -36,12 +35,15 @@
 }
 
 .link {
-	margin-inline: auto;
-	margin-top: 25px;
+	padding: 30px 80px;
 	text-decoration: none;
 	color: #000000;
 	font-size: 13px;
 	cursor: pointer;
+
+	&:focus {
+		color: blue;
+	}
 
 	@media screen and (min-width: 1024px) {
 		margin-right: 60px;
