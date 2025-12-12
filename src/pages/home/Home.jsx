@@ -48,6 +48,11 @@ const Home = () => {
 		<>
 			<div>
 				<Main></Main>
+				<ol>
+					{data && data.filter(el => el.artist_title !== "Author is unknown" && el.artist_title !== "" && el.artist_title !== null).map(val => (
+						<li key={val.id} value={val.artist_title}>{val.artist_title}</li>
+					))}
+				</ol>
 				<div className={styles.home}>
 					{!dataChoosing.length && randomData && randomData.map(el => (
 						<Card key={el.id} title={el.title} description={el.description} id={el.image_id} author={el.artist_title} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
