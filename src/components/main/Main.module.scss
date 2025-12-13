@@ -2,7 +2,8 @@
 	display: none;
 
 	@media screen and (min-width: 1024px) {
-		padding-inline: 5rem;
+		display: block;
+		grid-column: 1 / -1;
 		padding-bottom: 1rem;
 	}
 }

@@ -5,7 +5,8 @@ import Header from "../../components/header/Header";
 import Main from "../../components/main/Main";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from '../../store/cartSlice';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import { addChoseItem } from '../../store/choseAuthorSlice';
 
 const Home = () => {
 	const data = useSelector(state => state.product.items);
@@ -41,16 +42,30 @@ const Home = () => {
 
 	useEffect(() => {
 		setRandomData(selectRandomElements(data, 5));
-		console.log(randomData);
 	}, [])
+
+	const author = useMemo(() => {
+		const uniqueAuthors = new Set();
+		data.map(obj => {
+			if (obj.artist_title) {
+				uniqueAuthors.add(obj.artist_title);
+			}
+		});
+		return Array.from(uniqueAuthors);
+	}, [data]);
+
+	const handleClickAuthor = (el) => {
+		const newData = data.filter(item => item.artist_title === el);
+		dispatch(addChoseItem(newData));
+	}
 
 	return (
 		<>
-			<div>
+			<div className={styles.wrapper}>
 				<Main></Main>
 				<ol>
-					{data && data.filter(el => el.artist_title !== "Author is unknown" && el.artist_title !== "" && el.artist_title !== null).map(val => (
-						<li key={val.id} value={val.artist_title}>{val.artist_title}</li>
+					{author.length && author.map((el, index) => (
+						<li className={styles.item} onClick={() => handleClickAuthor(el, index)} key={index}>{el}</li>
 					))}
 				</ol>
 				<div className={styles.home}>

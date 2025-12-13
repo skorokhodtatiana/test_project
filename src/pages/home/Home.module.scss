@@ -1,3 +1,21 @@
+.wrapper {
+	display: grid;
+	grid-template-rows: auto auto auto;
+	grid-template-columns: 1fr;
+	padding-inline: 1rem;
+
+	@media screen and (min-width: 1024px) {
+		display: grid;
+		grid-template-rows: auto auto;
+		grid-template-columns: 300px 1fr;
+		padding-inline: 5rem;
+	}
+}
+
+.item {
+	cursor: pointer;
+}
+
 .home {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 310px));
