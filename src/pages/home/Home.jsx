@@ -16,6 +16,7 @@ const Home = () => {
 	const [listInCart, setListInCart] = useState('');
 	const [isInCart, setIsInCart] = useState(false);
 	const [randomData, setRandomData] = useState('');
+	const [chooseauthor, setChooseauthor] = useState('');
 
 	const choseItem = (item) => {
 		dispatch(addItem(item));
@@ -54,9 +55,10 @@ const Home = () => {
 		return Array.from(uniqueAuthors);
 	}, [data]);
 
-	const handleClickAuthor = (el) => {
+	const handleClickAuthor = (el, index) => {
 		const newData = data.filter(item => item.artist_title === el);
 		dispatch(addChoseItem(newData));
+		setChooseauthor(index);
 	}
 
 	return (
@@ -65,7 +67,7 @@ const Home = () => {
 				<Main></Main>
 				<ol>
 					{author.length && author.map((el, index) => (
-						<li className={styles.item} onClick={() => handleClickAuthor(el, index)} key={index}>{el}</li>
+						<li className={styles.item} style={{ backgroundColor: chooseauthor === index ? 'gray' : 'white'}} onClick={() => handleClickAuthor(el, index)} key={index}>{el}</li>
 					))}
 				</ol>
 				<div className={styles.home}>
