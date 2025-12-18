@@ -65,11 +65,11 @@ const Home = () => {
 		<>
 			<div className={styles.wrapper}>
 				<Main></Main>
-				<ol>
+				<ul className={styles.list}>
 					{author.length && author.map((el, index) => (
 						<li className={styles.item} style={{ backgroundColor: chooseauthor === index ? 'gray' : 'white'}} onClick={() => handleClickAuthor(el, index)} key={index}>{el}</li>
 					))}
-				</ol>
+				</ul>
 				<div className={styles.home}>
 					{!dataChoosing.length && randomData && randomData.map(el => (
 						<Card key={el.id} title={el.title} description={el.description} id={el.image_id} author={el.artist_title} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
