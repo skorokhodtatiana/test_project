@@ -66,7 +66,7 @@ const Home = () => {
 			<div className={styles.wrapper}>
 				<Main></Main>
 				<ul className={styles.list}>
-					{author.length && author.map((el, index) => (
+					{!author.length ? <h3>Loading...</h3> : author.map((el, index) => (
 						<li className={styles.item} style={{ backgroundColor: chooseauthor === index ? 'gray' : 'white'}} onClick={() => handleClickAuthor(el, index)} key={index}>{el}</li>
 					))}
 				</ul>
