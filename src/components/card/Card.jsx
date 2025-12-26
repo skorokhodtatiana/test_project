@@ -8,7 +8,7 @@ const Card = ({ id, title, author, handleClick, classIcons, isInCart }) => {
 		<>
 			<div key={id} className={ styles.card }>
 				<div>
-					<img className={ styles.image} src={ 'https://www.artic.edu/iiif/2/' + id + '/full/843,/0/default.jpg' } alt={ title }></img>
+					<img className={ styles.image} src={ 'https://www.artic.edu/iiif/2/' + id + '/full/843,/0/default.jpg' } alt={ title } loading="lazy"></img>
 					<div className={ styles.title_name }>{title }</div>
 					<div className={ styles.second_title}>{ author? author : 'Author is unknown' }</div>
 				</div>
