@@ -48,15 +48,15 @@ const Home = () => {
 	const author = useMemo(() => {
 		const uniqueAuthors = new Set();
 		data.map(obj => {
-			if (obj.artist_title) {
-				uniqueAuthors.add(obj.artist_title);
+			if (obj.author) {
+				uniqueAuthors.add(obj.author);
 			}
 		});
 		return Array.from(uniqueAuthors);
 	}, [data]);
 
 	const handleClickAuthor = (el, index) => {
-		const newData = data.filter(item => item.artist_title === el);
+		const newData = data.filter(item => item.author === el);
 		dispatch(addChoseItem(newData));
 		setChooseauthor(index);
 	}
@@ -72,10 +72,10 @@ const Home = () => {
 				</ul>
 				<div className={styles.home}>
 					{!dataChoosing.length && randomData && randomData.map(el => (
-						<Card key={el.id} title={el.title} description={el.description} id={el.image_id} author={el.artist_title} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
+						<Card key={el.id} id={el.id} author={el.author} download_url={el.download_url} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
 					))}
 					{dataChoosing && dataChoosing.map(el => (
-						<Card key={el.id} title={el.title} description={el.description} id={el.image_id} author={el.artist_title} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
+						<Card key={el.id} id={el.id} download_url={el.download_url} author={el.author} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
 					))}
 				</div>
 			</div>

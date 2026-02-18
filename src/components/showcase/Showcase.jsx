@@ -22,7 +22,7 @@ const Showcase = () => {
 		<>
 			<div className={styles.page}>
 				{data && data.map(el => (
-					<Card key={el.id} title={el.title} description={el.description} id={el.image_id} author={el.artist_title} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
+					<Card key={el.id} id={el.id} download_url={el.download_url} author={el.author} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
 				))}
 			</div>
 		</>

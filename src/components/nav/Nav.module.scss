@@ -35,6 +35,7 @@
 }
 
 .link {
+	$self: &;
 	padding: 30px 76px;
 	align-self: center;
 	text-decoration: none;

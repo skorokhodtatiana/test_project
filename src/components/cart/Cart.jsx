@@ -11,7 +11,7 @@ const Cart = () => {
 				Корзина
 			</h1>
 			{items.length && items.map(el => (
-				<Card key={ el.item.id } title={ el.item.title } description={ el.item.description } id={ el.item.image_id } author={ el.item.artist_title } classIcons={ styles.icons }></Card>
+				<Card key={el.item.id} id={el.id} download_url={ el.item.download_url } author={ el.item.author } classIcons={ styles.icons }></Card>
 			))}
 		</>
 	)

@@ -36,7 +36,7 @@ const Nav = () => {
 	const handleChange = (e) => {
 		setValueAuthor(e.target.value);
 		const newData = data?.filter(el => {
-			return el.artist_title && el.artist_title === e.target.value
+			return el.author && el.author === e.target.value
 		});
 
 		if (newData.length) {

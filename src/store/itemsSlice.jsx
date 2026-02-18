@@ -36,7 +36,7 @@ const productsSlice = createSlice({
 			state.error = null;
 		})
 		.addCase(fetchProducts.fulfilled, (state, action) => {
-			state.items = action.payload.data;
+			state.items = action.payload;
 			state.status = 'succeeded';
 			state.error = null;
 		})

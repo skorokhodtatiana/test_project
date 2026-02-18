@@ -12,7 +12,8 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const promise = dispatch(fetchProducts('https://api.artic.edu/api/v1/artworks?page=2&limit=100'));
+		const promise = dispatch(fetchProducts('https://placeholdpicsum.dev/api/v1/list'));
+
 		return () => {
 			promise.abort();
 		}

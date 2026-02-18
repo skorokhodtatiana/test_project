@@ -2,15 +2,14 @@ import styles from'./Card.module.scss';
 import cart from '../../assets/images/cart.svg';
 import Button from '../button/Button';
 
-const Card = ({ id, title, author, handleClick, classIcons, isInCart }) => {
+const Card = ({ id, author, handleClick, classIcons, isInCart, download_url }) => {
 
 	return (
 		<>
 			<div key={id} className={ styles.card }>
 				<div>
-					<img className={ styles.image} src={ 'https://www.artic.edu/iiif/2/' + id + '/full/843,/0/default.jpg' } alt={ title } loading="lazy"></img>
-					<div className={ styles.title_name }>{title }</div>
-					<div className={ styles.second_title}>{ author? author : 'Author is unknown' }</div>
+					<img className={ styles.image} src={ download_url } alt={`picture of ${author}`} loading="lazy"></img>
+					<div className={ styles.second_title}>{ author }</div>
 				</div>
 				<div className={ styles.icons + ' ' + classIcons }>
 					{ isInCart ?
