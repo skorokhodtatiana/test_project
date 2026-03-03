@@ -41,9 +41,14 @@ const Home = () => {
 		return selected;
 	}
 
+	const random = data ? selectRandomElements(data, 6) : null;
+	console.log('random', random)
+
 	useEffect(() => {
-		setRandomData(selectRandomElements(data, 5));
-	}, [])
+		// const random = selectRandomElements(data, 5);
+		// console.log('random', random)
+		setRandomData(random);
+	}, [random])
 
 	const author = useMemo(() => {
 		const uniqueAuthors = new Set();
@@ -71,7 +76,7 @@ const Home = () => {
 					))}
 				</ul>
 				<div className={styles.home}>
-					{!dataChoosing.length && randomData && randomData.map(el => (
+					{!dataChoosing.length && randomData?.length && randomData.map(el => (
 						<Card key={el.id} id={el.id} author={el.author} download_url={el.download_url} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
 					))}
 					{dataChoosing && dataChoosing.map(el => (
