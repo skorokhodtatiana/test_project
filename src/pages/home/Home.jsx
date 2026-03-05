@@ -1,21 +1,20 @@
 import styles from'./Home.module.scss';
 import Card from "../../components/card/Card";
-import { Link } from 'react-router';
-import Header from "../../components/header/Header";
 import Main from "../../components/main/Main";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from '../../store/cartSlice';
-import { useEffect, useState, useMemo } from 'react';
+import { useState } from 'react';
 import { addChoseItem } from '../../store/choseAuthorSlice';
+import RandomBlock from '../../components/randomBlock/RandomBlock';
+import SidebarAuthors from '../../sidebarAuthors/SidebarAuthors';
 
 const Home = () => {
-	const data = useSelector(state => state.product.items);
-	const dataChoosing = useSelector(state => state.author.item);
+	const arrDataPictures = useSelector(state => state.product.items);
+	const dataSelectedAuthor = useSelector(state => state.author.item);
 	const dispatch = useDispatch();
 
 	const [listInCart, setListInCart] = useState('');
 	const [isInCart, setIsInCart] = useState(false);
-	const [randomData, setRandomData] = useState('');
 	const [chooseauthor, setChooseauthor] = useState('');
 
 	const choseItem = (item) => {
@@ -24,62 +23,25 @@ const Home = () => {
 		setListInCart(item.id);
 	}
 
-	const selectRandomElements = (arr, count) => {
-		if (count > arr.length) {
-			console.error("Количество выбираемых элементов не может быть больше длины массива.");
-			return;
-		}
-
-		const selected = [];
-		while (selected.length < count) {
-			const randomIndex = Math.floor(Math.random() * arr.length);
-			const randomElement = arr[randomIndex];
-				if (!selected.includes(randomElement)) {
-					selected.push(randomElement);
-				}
-			}
-		return selected;
-	}
-
-	const random = data ? selectRandomElements(data, 6) : null;
-	console.log('random', random)
-
-	useEffect(() => {
-		// const random = selectRandomElements(data, 5);
-		// console.log('random', random)
-		setRandomData(random);
-	}, [random])
-
-	const author = useMemo(() => {
-		const uniqueAuthors = new Set();
-		data.map(obj => {
-			if (obj.author) {
-				uniqueAuthors.add(obj.author);
-			}
-		});
-		return Array.from(uniqueAuthors);
-	}, [data]);
-
 	const handleClickAuthor = (el, index) => {
-		const newData = data.filter(item => item.author === el);
+		const newData = arrDataPictures?.filter(item => item.author === el);
 		dispatch(addChoseItem(newData));
 		setChooseauthor(index);
 	}
+
+	console.log('Home render')
 
 	return (
 		<>
 			<div className={styles.wrapper}>
 				<Main></Main>
 				<ul className={styles.list}>
-					{!author.length ? <h3>Loading...</h3> : author.map((el, index) => (
-						<li className={styles.item} style={{ backgroundColor: chooseauthor === index ? 'gray' : 'white'}} onClick={() => handleClickAuthor(el, index)} key={index}>{el}</li>
-					))}
+					<SidebarAuthors arrDataPictures={arrDataPictures} chooseauthor={chooseauthor} className={styles.item} handleClickAuthor={handleClickAuthor}/>
 				</ul>
 				<div className={styles.home}>
-					{!dataChoosing.length && randomData?.length && randomData.map(el => (
-						<Card key={el.id} id={el.id} author={el.author} download_url={el.download_url} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
-					))}
-					{dataChoosing && dataChoosing.map(el => (
+					<RandomBlock arrDataPictures={arrDataPictures} dataSelectedAuthor={dataSelectedAuthor} listInCart={listInCart} handleClick={(item) => choseItem(item)}/>
+
+					{dataSelectedAuthor.length && dataSelectedAuthor.map(el => (
 						<Card key={el.id} id={el.id} download_url={el.download_url} author={el.author} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => choseItem(el)}></Card>
 					))}
 				</div>
