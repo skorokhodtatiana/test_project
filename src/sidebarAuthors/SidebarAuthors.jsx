@@ -1,30 +1,28 @@
-import {  useMemo } from 'react';
+// import {  useMemo } from 'react';
 
 const SidebarAuthors = ({arrDataPictures, chooseauthor, handleClickAuthor, className}) => {
 
-	// const showAuthor = () => {
-	// 	const uniqueAuthors = new Set();
-	// 	arrDataPictures.map(obj => {
-	// 		if (obj.author) {
-	// 			uniqueAuthors.add(obj.author);
-	// 		}
-	// 	});
-	// 	return Array.from(uniqueAuthors);
-	// };
+	const showAuthor = () => {
+		const uniqueAuthors = new Set();
+		arrDataPictures.map(obj => {
+			if (obj.author) {
+				uniqueAuthors.add(obj.author);
+			}
+		});
+		return Array.from(uniqueAuthors);
+	};
 
-	// const authors = showAuthor();
+	const authors = showAuthor();
 
-			const authors = useMemo(() => {
-			const uniqueAuthors = new Set();
-			arrDataPictures.map(obj => {
-				if (obj.author) {
-					uniqueAuthors.add(obj.author);
-				}
-			});
-			return Array.from(uniqueAuthors);
-		}, [arrDataPictures]);
-
-	console.log('SidebarAuthors render')
+		// const authors = useMemo(() => {
+		// 	const uniqueAuthors = new Set();
+		// 	arrDataPictures.map(obj => {
+		// 		if (obj.author) {
+		// 			uniqueAuthors.add(obj.author);
+		// 		}
+		// 	});
+		// 	return Array.from(uniqueAuthors);
+		// }, [arrDataPictures]);
 
 	return (
 		<>
