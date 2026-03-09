@@ -1,4 +1,4 @@
-import search from '../../assets/images/search.svg';
+// import search from '../../assets/images/search.svg';
 import close from '../../assets/images/close.svg';
 import Button from '../button/Button';
 // import { useSelector } from 'react-redux';
@@ -8,16 +8,17 @@ import styles from './Search.module.scss';
 const Search = ({handleChange, clearInput, valueAuthor}) => {
 	// const data = useSelector(state => state.product.items)
 
-	async function formAction(formData) {
-		const newItem = formData.get('idPicture');
+	// async function formAction(formData) {
+	// 	const newItem = formData.get('idPicture');
 
-		//Отправляет POST-запрос на сервер для сохранения нового элемента
-		//setItems((items) => [...items, { text: newItem }])
-	}
+	// 	//Отправляет POST-запрос на сервер для сохранения нового элемента
+	// 	//setItems((items) => [...items, { text: newItem }])
+	// }
 
 	return (
 		<>
-			<form className={ styles.form } action={ formAction }>
+			<form className={ styles.form }>
+				{/* <form className={ styles.form } action={ formAction }> */}
 				{/* <img className={ styles.search } src={search} alt=""></img> */}
 				{/* <select value={ valueAuthor } className={ styles.input } onChange={ (e) => handleChange(e)}>
 					<option value="" disabled hidden>Выберите автора...</option>

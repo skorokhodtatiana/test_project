@@ -13,7 +13,7 @@ const RandomBlock = ({arrDataPictures, dataSelectedAuthor, listInCart, handleCli
 		return arr.slice(0, count);
 	};
 
-	const randomData = getRandomPhotos(arrDataPictures, 5);
+	const randomData = getRandomPhotos(arrDataPictures, 6);
 
 	console.log('RandomBlock render')
 	if (!randomData.length) {

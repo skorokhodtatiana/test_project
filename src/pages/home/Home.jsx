@@ -29,8 +29,6 @@ const Home = () => {
 		setChooseauthor(index);
 	}
 
-	console.log('Home render')
-
 	return (
 		<>
 			<div className={styles.wrapper}>
