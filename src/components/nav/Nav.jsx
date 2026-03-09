@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Nav.module.scss';
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import sadFace from '../../assets/images/sad-face.svg';
-import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import Search from '../search/Search';
 import { useLocation } from "react-router-dom";
@@ -16,18 +15,10 @@ const Nav = () => {
 	const [valueAuthor, setValueAuthor] = useState('');
 
 	const classNameLinkMenu = `${ styles.items } ${isMobile ? styles.flex : ''}`;
+	const location = useLocation();
 
 	const handleClick = () => {
 		setIsMobile(!isMobile);
-	}
-
-	function ConditionalSearchBar() {
-		const location = useLocation();
-
-		if (location.pathname === '/') {
-			return <Search handleChange={handleChange} valueAuthor={valueAuthor} clearInput={clearInput}></Search>
-		}
-		return null;
 	}
 
 	const dispatch = useDispatch();
@@ -36,7 +27,7 @@ const Nav = () => {
 	const handleChange = (e) => {
 		setValueAuthor(e.target.value);
 		const newData = data?.filter(el => {
-			return el.author && el.author === e.target.value
+			return el.author.toLowerCase().includes(e.target.value.toLowerCase())
 		});
 
 		if (newData.length) {
@@ -51,6 +42,20 @@ const Nav = () => {
 		dispatch(addChoseItem(''));
 	}
 
+	const handleClickItemNav = () => {
+		setIsMobile(!isMobile);
+	}
+
+	const handleClickModalClose = () => {
+		setValueAuthor('');
+		setShowModal(false);
+	}
+
+	useEffect(() => {
+		setValueAuthor('');
+		dispatch(addChoseItem(''));
+	},[location, dispatch])
+
 	return (
 		<div className={styles.nav} >
 			<div className={ isMobile ? styles.open : styles.burger } onClick={ handleClick }>
@@ -59,13 +64,15 @@ const Nav = () => {
 				<span className={ styles.line }></span>
 			</div>
 			<nav className={ classNameLinkMenu }>
-				<NavLink className={ styles.link } to="/">About us</NavLink>
-				<NavLink className={ styles.link } to="/catalog">Catalog</NavLink>
-				<NavLink className={ styles.link } to="/cart">Cart</NavLink>
-				<ConditionalSearchBar></ConditionalSearchBar>
+				<NavLink onClick={handleClickItemNav} className={ styles.link } to="/">About us</NavLink>
+				<NavLink onClick={handleClickItemNav} className={ styles.link } to="/catalog">Catalog</NavLink>
+				<NavLink onClick={handleClickItemNav} className={ styles.link } to="/cart">Cart</NavLink>
+				{location.pathname === '/' &&
+					<Search handleChange={handleChange} data={data} valueAuthor={valueAuthor} clearInput={clearInput}></Search>
+				}
 			</nav>
 			{showModal &&
-				<Modal showModal={showModal} handleClick={() => setShowModal(false)}>
+				<Modal showModal={showModal} handleClick={handleClickModalClose}>
 					<h4 className={ styles.text }>Картины этого автора не найдены</h4>
 					<img className={ styles.modalImg } src={sadFace} alt=""></img>
 				</Modal>
