@@ -1,11 +1,8 @@
 .card {
-	// height: 350px;
-	width: 300px;
-	height: 420px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	padding: 20px;
+	gap: 10px;
 }
 
 .title_name {
@@ -14,16 +11,18 @@
 }
 
 .image {
-	width: 250px;
-	height: 250px;
-	width: 300px;
-	height: 300px;
+	max-width: 100%;
 	padding-bottom: 20px;
 }
 
 .second_title {
-	font-size: 12px;
 	font-weight: 600;
+}
+
+.description {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .icons {
@@ -33,4 +32,8 @@
 .button {
 	border: none;
 	background-color: unset;
+}
+
+.iconCart {
+	max-width: 100%;
 }
