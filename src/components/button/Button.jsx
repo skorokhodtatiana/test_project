@@ -10,7 +10,7 @@ const Button = ({
 }) => {
 
 	return (
-		<button className={ styles.button + ' ' + className }
+		<button className={ className }
 			disabled={ disabled }
 			type={ type }
 			onClick={handleClick}
