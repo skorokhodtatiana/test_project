@@ -23,7 +23,7 @@ const RandomBlock = ({arrDataPictures, dataSelectedAuthor, listInCart, handleCli
 	return (
 		<>
 			{ !dataSelectedAuthor.length && randomData.map(el => (
-				<Card key={el.id} id={el.id} author={el.author} download_url={el.download_url} isInCart={listInCart && listInCart === el.id ? true : false} handleClick={() => handleClick(el) }></Card>
+				<Card key={el.id} id={el.id} author={el.author} download_url={el.download_url} isInCart={listInCart.length && listInCart.includes(el.id) ? true : false} handleClick={() => handleClick(el) }></Card>
 			))}
 		</>
 	)
