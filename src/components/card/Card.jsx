@@ -6,7 +6,7 @@ const Card = ({ id, author, handleClick, classIcons, isInCart, download_url, cla
 
 	return (
 		<>
-			<div key={id} className={ `styles.card  ${classCard}` }>
+			<div key={id} className={ styles.card + ' ' + classCard }>
 				<img className={ styles.image} src={ download_url } alt={`picture of ${author}`} loading="lazy"></img>
 				<div className={ styles.description }>
 					<div className={ styles.second_title}>{ author }</div>
