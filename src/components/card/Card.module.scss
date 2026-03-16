@@ -30,11 +30,16 @@
 	align-self: flex-end;
 }
 
-.button {
+.button_to_cart {
 	border: none;
 	background-color: unset;
 }
 
 .iconCart {
 	max-width: 100%;
+}
+
+.button_delete {
+	background-color: inherit;
+	border: none;
 }
