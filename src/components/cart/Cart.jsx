@@ -2,19 +2,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import Card from '../card/Card';
 import styles from'./Cart.module.scss';
 import { addItem } from '../../store/cartSlice';
-import useLocalStorage from '../../utils/useLocalStorage';
+//import useLocalStorage from '../../utils/useLocalStorage';
 
 const Cart = () => {
 	const [itemsInCart, setItemsInCart] = useLocalStorage('itemsInCart', []);
 	const items = useSelector(state => state.cart.item)
-
 	const dispatch = useDispatch();
+
 
 	const handleClickDelete = (id) => {
 		const currentItemInCart = items.filter(el => 
-			el.item.id != id
+			el.item.id !== id
 		)
-		setItemsInCart([...itemsInCart, ])
+		dispatch(addItem(currentItemInCart))
+		// setItemsInCart([...itemsInCart, ])
 		console.log('currentItemInCart', currentItemInCart)
 		console.log('id', id)
 	}
