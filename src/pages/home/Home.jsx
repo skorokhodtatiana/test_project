@@ -41,7 +41,7 @@ const Home = () => {
 				<div className={styles.home}>
 					<RandomBlock arrDataPictures={arrDataPictures} dataSelectedAuthor={dataSelectedAuthor} listInCart={itemsInCart} handleClick={(item) => choseItem(item)}/>
 
-					{dataSelectedAuthor.length && dataSelectedAuthor.map(el => (
+					{dataSelectedAuthor.length > 0 && dataSelectedAuthor.map(el => (
 						<Card key={el.id} id={el.id} download_url={el.download_url} author={el.author} isInCart={itemsInCart.length && itemsInCart.includes(el.id) ? true : false} handleClick={() => choseItem(el)}></Card>
 					))}
 				</div>
