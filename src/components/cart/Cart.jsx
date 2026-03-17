@@ -12,15 +12,8 @@ const Cart = () => {
 
 
 	const handleClickDelete = (id) => {
-		const currentItemInCart = items.filter(el => 
-			el.item.id !== id
-		)
-		dispatch(removeItem(currentItemInCart));
-		console.log('itemsInCart',itemsInCart)
-		console.log('id',id)
-		const currentIdItemInCart = itemsInCart.filter(item => item !== id);
-			console.log('currentIdItemInCart',currentIdItemInCart)
-		setItemsInCart(currentIdItemInCart)
+		dispatch(removeItem(id));
+		setItemsInCart(itemsInCart.filter(item => item !== id))
 	}
 
 	return (
