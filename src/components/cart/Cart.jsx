@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../card/Card';
 import styles from'./Cart.module.scss';
-import { addItem } from '../../store/cartSlice';
-//import useLocalStorage from '../../utils/useLocalStorage';
+import { removeItem } from '../../store/cartSlice';
+import useLocalStorage from '../../utils/useLocalStorage';
 
 const Cart = () => {
 	const [itemsInCart, setItemsInCart] = useLocalStorage('itemsInCart', []);
-	const items = useSelector(state => state.cart.item)
+	const items = useSelector(state => state.cart.item);
+	console.log('items', items)
 	const dispatch = useDispatch();
 
 
@@ -14,10 +15,12 @@ const Cart = () => {
 		const currentItemInCart = items.filter(el => 
 			el.item.id !== id
 		)
-		dispatch(addItem(currentItemInCart))
-		// setItemsInCart([...itemsInCart, ])
-		console.log('currentItemInCart', currentItemInCart)
-		console.log('id', id)
+		dispatch(removeItem(currentItemInCart));
+		console.log('itemsInCart',itemsInCart)
+		console.log('id',id)
+		const currentIdItemInCart = itemsInCart.filter(item => item !== id);
+			console.log('currentIdItemInCart',currentIdItemInCart)
+		setItemsInCart(currentIdItemInCart)
 	}
 
 	return (
