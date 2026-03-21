@@ -7,7 +7,6 @@ import useLocalStorage from '../../utils/useLocalStorage';
 const Cart = () => {
 	const [itemsInCart, setItemsInCart] = useLocalStorage('itemsInCart', []);
 	const items = useSelector(state => state.cart.item);
-	console.log('items', items)
 	const dispatch = useDispatch();
 
 

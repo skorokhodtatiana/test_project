@@ -2,18 +2,16 @@ import styles from'./Showcase.module.scss';
 import Card from "../card/Card";
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../store/cartSlice';
-import { useState } from 'react';
+// import { useState } from 'react';
 import useLocalStorage from '../../utils/useLocalStorage';
 
 const Showcase = () => {
-	const [isInCart, setIsInCart] = useState(false);
 	const [itemsInCart, setItemsInCart] = useLocalStorage('itemsInCart', []);
 
 	const dispatch = useDispatch();
 
 	const choseItem = (item) => {
 		dispatch(addItem(item));
-		setIsInCart(true);
 		setItemsInCart([...itemsInCart, item.id])
 	}
 
