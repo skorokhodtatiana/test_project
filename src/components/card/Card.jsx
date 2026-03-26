@@ -17,11 +17,11 @@ const Card = ({
 
 	return (
 		<>
-			<div key={id} className={ styles.card + ' ' + classCard }>
+			<div key={id} className={ `${styles.card} ${classCard}` }>
 				<img className={ styles.image} src={ download_url } alt={`picture of ${author}`} loading="lazy"></img>
-				<div className={ styles.description + ' ' + classDescription }>
+				<div className={ `${styles.description} ${classDescription}` }>
 					<div className={ styles.second_title}>{ author }</div>
-					<div className={ styles.icons + ' ' + classIcons }>
+					<div className={ `${styles.icons} ${classIcons}` }>
 						{ isInCart ?
 							<div>Товар в корзине</div>
 						:
