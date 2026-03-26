@@ -10,7 +10,7 @@ const RandomBlock = ({arrDataPictures, dataSelectedAuthor, listInCart, handleCli
 			let j = Number(Math.floor(Math.random() * (i + 1)));
 			[newArr[i], newArr[j]] = [newArr[j], newArr[i]];
 		}
-		return arr.slice(0, count);
+		return newArr.slice(0, count);
 	};
 
 	const randomData = getRandomPhotos(arrDataPictures, 6);
