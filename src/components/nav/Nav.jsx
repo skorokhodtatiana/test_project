@@ -64,9 +64,9 @@ const Nav = () => {
 				<span className={ styles.line }></span>
 			</div>
 			<nav className={ classNameLinkMenu }>
-				<NavLink onClick={handleClickItemNav} className={ styles.link } to="/">About us</NavLink>
-				<NavLink onClick={handleClickItemNav} className={ styles.link } to="/catalog">Catalog</NavLink>
-				<NavLink onClick={handleClickItemNav} className={ styles.link } to="/cart">Cart</NavLink>
+				<NavLink onClick={handleClickItemNav} className={ ({ isActive }) => isActive ? `${styles.link} ${styles.active} ` : styles.link } to="/">About us</NavLink>
+				<NavLink onClick={handleClickItemNav} className={ ({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link }  to="/catalog">Catalog</NavLink>
+				<NavLink onClick={handleClickItemNav} className={ ({ isActive }) => isActive ? `${styles.link} ${styles.active}` : styles.link }  to="/cart">Cart</NavLink>
 				{location.pathname === '/' &&
 					<Search handleChange={handleChange} data={data} valueAuthor={valueAuthor} clearInput={clearInput}></Search>
 				}

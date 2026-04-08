@@ -53,6 +53,10 @@
 	}
 }
 
+.active {
+	color: blue;
+}
+
 .burger {
 	$self: &;
 }
