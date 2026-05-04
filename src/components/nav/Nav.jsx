@@ -10,15 +10,15 @@ import { useLocation } from "react-router-dom";
 import { addChoseItem } from '../../store/choseAuthorSlice';
 
 const Nav = () => {
-	const [isMobile, setIsMobile] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [valueAuthor, setValueAuthor] = useState('');
 
-	const classNameLinkMenu = `${ styles.items } ${isMobile ? styles.flex : ''}`;
+	const classNameLinkMenu = `${ styles.items } ${isOpen ? styles.flex : ''}`;
 	const location = useLocation();
 
 	const handleClick = () => {
-		setIsMobile(!isMobile);
+		setIsOpen(!isOpen);
 	}
 
 	const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const Nav = () => {
 	}
 
 	const handleClickItemNav = () => {
-		setIsMobile(!isMobile);
+		setIsOpen(!isOpen);
 	}
 
 	const handleClickModalClose = () => {
@@ -57,8 +57,8 @@ const Nav = () => {
 	},[location, dispatch])
 
 	return (
-		<div className={styles.nav} >
-			<div className={ isMobile ? styles.open : styles.burger } onClick={ handleClick }>
+		<div className={styles.nav}>
+			<div className={ isOpen ? styles.open : styles.burger } onClick={ handleClick } role='button' aria-haspopup='true' aria-expanded={isOpen}>
 				<span className={ styles.line }></span>
 				<span className={ styles.line }></span>
 				<span className={ styles.line }></span>
